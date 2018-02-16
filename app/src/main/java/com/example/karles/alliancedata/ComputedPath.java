@@ -16,42 +16,19 @@ public class ComputedPath {
 
     }
 
-    public ComputedPath(int[] path, int pathSum, boolean isValid) {
+    ComputedPath(int[] path, int pathSum, boolean isValid) {
         this.pathSum = pathSum;
         this.path = path;
         this.isValid = isValid;
     }
 
-    public int getPathSum() {
+    int getPathSum() {
         return pathSum;
     }
-    public boolean isValid() {
+    boolean isValid() {
         return isValid;
     }
-    public int[] getNewPath(){
+    int[] getPath(){
         return this.path;
     }
-    public int[] getPath() {
-        if (path != null) {
-            int j = 0;
-            for (int i = 0; i < path.length; i++) {
-                if (path[i] != 0) {
-                    path[j++] = path[i];
-                }
-            }
-            int[] newArray = new int[j];
-            System.arraycopy(path, 0, newArray, 0, j);
-            return newArray;
-        } else {
-            return new int[0];
-        }
-    }
-
-//    public int getErrorCode() {
-//        return errorCode;
-//    }
-//
-//    public void setErrorCode(int errorCode) {
-//        this.errorCode = errorCode;
-//    }
 }

@@ -39,7 +39,7 @@ public class AllianceDataCodeTest {
 
         assertEquals(path.getPathSum(), computedValue);
         assertEquals(path.isValid(), isValid);
-        assertArrayEquals(outputArray, path.getNewPath());
+        assertArrayEquals(outputArray, path.getPath());
     }
 
     @Test
@@ -59,7 +59,7 @@ public class AllianceDataCodeTest {
 
         assertEquals(path.getPathSum(), computedValue);
         assertEquals(path.isValid(), isValid);
-        assertArrayEquals(outputArray, path.getNewPath());
+        assertArrayEquals(outputArray, path.getPath());
     }
 
     @Test
@@ -77,7 +77,7 @@ public class AllianceDataCodeTest {
 
         assertEquals(path.getPathSum(), computedValue);
         assertEquals(path.isValid(), isValid);
-        assertArrayEquals(outputArray, path.getNewPath());
+        assertArrayEquals(outputArray, path.getPath());
     }
 
     @Test
@@ -93,7 +93,7 @@ public class AllianceDataCodeTest {
 
         assertEquals(path.getPathSum(), computedValue);
         assertEquals(path.isValid(), isValid);
-        assertArrayEquals(outputArray, path.getNewPath());
+        assertArrayEquals(outputArray, path.getPath());
     }
 
     @Test
@@ -113,7 +113,7 @@ public class AllianceDataCodeTest {
 
         assertEquals(path.getPathSum(), computedValue);
         assertEquals(path.isValid(), isValid);
-        assertArrayEquals(outputArray, path.getNewPath());
+        assertArrayEquals(outputArray, path.getPath());
     }
 
     @Test
@@ -150,7 +150,7 @@ public class AllianceDataCodeTest {
 
         assertEquals(path.getPathSum(), computedValue);
         assertEquals(path.isValid(), isValid);
-        assertArrayEquals(outputArray, path.getNewPath());
+        assertArrayEquals(outputArray, path.getPath());
     }
 
     @Test
@@ -168,7 +168,7 @@ public class AllianceDataCodeTest {
 
         assertEquals(path.getPathSum(), computedValue);
         assertEquals(path.isValid(), isValid);
-        assertArrayEquals(outputArray, path.getNewPath());
+        assertArrayEquals(outputArray, path.getPath());
     }
 
     @Test
@@ -187,7 +187,7 @@ public class AllianceDataCodeTest {
 
         assertEquals(path.getPathSum(), computedValue);
         assertEquals(path.isValid(), isValid);
-        assertArrayEquals(outputArray, path.getNewPath());
+        assertArrayEquals(outputArray, path.getPath());
     }
 
     @Test
@@ -206,7 +206,7 @@ public class AllianceDataCodeTest {
 
         assertEquals(path.getPathSum(), computedValue);
         assertEquals(path.isValid(), isValid);
-        assertArrayEquals(outputArray, path.getNewPath());
+        assertArrayEquals(outputArray, path.getPath());
     }
 
     @Test
@@ -225,7 +225,7 @@ public class AllianceDataCodeTest {
 
         assertEquals(path.getPathSum(), computedValue);
         assertEquals(path.isValid(), isValid);
-        assertArrayEquals(outputArray, path.getNewPath());
+        assertArrayEquals(outputArray, path.getPath());
     }
 
     @Test
@@ -246,6 +246,6 @@ public class AllianceDataCodeTest {
 
         assertEquals(path.getPathSum(), computedValue);
         assertEquals(path.isValid(), isValid);
-        assertArrayEquals(outputArray, path.getNewPath());
+        assertArrayEquals(outputArray, path.getPath());
     }
 }
