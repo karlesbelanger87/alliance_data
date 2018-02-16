@@ -7,7 +7,6 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 /**
  * Created by Mart on 2018-02-10.
@@ -16,13 +15,10 @@ public class AllianceDataCodeTest {
 
     AllianceDataCode allianceDataCode;
 
-    AllianceDataCode spyAllianceDataCode;
-
     @Before
     public void initialize() {
         //Add initializer if needed
         allianceDataCode = new AllianceDataCode();
-        spyAllianceDataCode = spy(allianceDataCode);
     }
 
     @Test
@@ -34,18 +30,16 @@ public class AllianceDataCodeTest {
                 {8, 4, 1, 3, 2, 6},
                 {3, 7, 2, 8, 6, 4}};
 
-        boolean path = true;
-        int computedValue = 16;
-        int[] outputArray = new int[]{1, 2, 3, 4, 4, 5};
+        boolean isValid = true;
+        int computedValue = 17;
+        int[] outputArray = new int[]{1, 2, 1, 1, 5, 5};
 
 
-        spyAllianceDataCode.calculateMatrices(inputMatrix);
+        ComputedPath path = allianceDataCode.calculateMatrices(inputMatrix);
 
-        doReturn(path).when(spyAllianceDataCode).validateFormat();
-        doReturn(computedValue).when(spyAllianceDataCode).computedValue();
-        doReturn(outputArray).when(spyAllianceDataCode).resultingArray();
-
-        verify(spyAllianceDataCode).calculateMatrices(inputMatrix);
+        assertEquals(path.getPathSum(), computedValue);
+        assertEquals(path.isValid(), isValid);
+        assertArrayEquals(outputArray, path.getNewPath());
     }
 
     @Test
@@ -57,17 +51,15 @@ public class AllianceDataCodeTest {
                 {8, 4, 1, 3, 2, 6},
                 {3, 7, 2, 1, 2, 3}};
 
-        boolean path = true;
+        boolean isValid = true;
         int computedValue = 11;
         int[] outputArray = new int[]{1, 2, 1, 5, 4, 5};
 
-        spyAllianceDataCode.calculateMatrices(inputMatrix);
+        ComputedPath path = allianceDataCode.calculateMatrices(inputMatrix);
 
-        doReturn(path).when(spyAllianceDataCode).validateFormat();
-        doReturn(computedValue).when(spyAllianceDataCode).computedValue();
-        doReturn(outputArray).when(spyAllianceDataCode).resultingArray();
-
-        verify(spyAllianceDataCode).calculateMatrices(inputMatrix);
+        assertEquals(path.getPathSum(), computedValue);
+        assertEquals(path.isValid(), isValid);
+        assertArrayEquals(outputArray, path.getNewPath());
     }
 
     @Test
@@ -77,18 +69,15 @@ public class AllianceDataCodeTest {
                 {21, 23, 20, 19, 12},
                 {20, 12, 20, 11, 10}};
 
-        boolean path = false;
+        boolean isValid = false;
         int computedValue = 48;
-        int[] outputArray = new int[]{1, 1, 1};
+        int[] outputArray = new int[]{1, 1, 1, 0, 0};
 
+        ComputedPath path = allianceDataCode.calculateMatrices(inputMatrix);
 
-        spyAllianceDataCode.calculateMatrices(inputMatrix);
-
-        doReturn(path).when(spyAllianceDataCode).validateFormat();
-        doReturn(computedValue).when(spyAllianceDataCode).computedValue();
-        doReturn(outputArray).when(spyAllianceDataCode).resultingArray();
-
-        verify(spyAllianceDataCode).calculateMatrices(inputMatrix);
+        assertEquals(path.getPathSum(), computedValue);
+        assertEquals(path.isValid(), isValid);
+        assertArrayEquals(outputArray, path.getNewPath());
     }
 
     @Test
@@ -96,18 +85,15 @@ public class AllianceDataCodeTest {
         int[][] inputMatrix = new int[][]{
                 {5, 8, 5, 3, 5}};
 
-        boolean path = true;
+        boolean isValid = true;
         int computedValue = 26;
         int[] outputArray = new int[]{1, 1, 1, 1, 1};
 
+        ComputedPath path = allianceDataCode.calculateMatrices(inputMatrix);
 
-        spyAllianceDataCode.calculateMatrices(inputMatrix);
-
-        doReturn(path).when(spyAllianceDataCode).validateFormat();
-        doReturn(computedValue).when(spyAllianceDataCode).computedValue();
-        doReturn(outputArray).when(spyAllianceDataCode).resultingArray();
-
-        verify(spyAllianceDataCode).calculateMatrices(inputMatrix);
+        assertEquals(path.getPathSum(), computedValue);
+        assertEquals(path.isValid(), isValid);
+        assertArrayEquals(outputArray, path.getNewPath());
     }
 
     @Test
@@ -119,39 +105,19 @@ public class AllianceDataCodeTest {
                 {3},
                 {5}};
 
-        boolean path = true;
+        boolean isValid = true;
         int computedValue = 3;
         int[] outputArray = new int[]{4};
 
+        ComputedPath path = allianceDataCode.calculateMatrices(inputMatrix);
 
-        spyAllianceDataCode.calculateMatrices(inputMatrix);
-
-        doReturn(path).when(spyAllianceDataCode).validateFormat();
-        doReturn(computedValue).when(spyAllianceDataCode).computedValue();
-        doReturn(outputArray).when(spyAllianceDataCode).resultingArray();
-
-        verify(spyAllianceDataCode).calculateMatrices(inputMatrix);
+        assertEquals(path.getPathSum(), computedValue);
+        assertEquals(path.isValid(), isValid);
+        assertArrayEquals(outputArray, path.getNewPath());
     }
 
     @Test
     public void calculateMatrices_nonNumericInput_invalid() throws Exception {
-//        String[][] inputMatrix = new String[][]{
-//                {"5","4","H"},
-//                {"8", "M", "7"},
-//                {"5", "7", "5"}};
-//
-//        boolean path = false;
-//        int computedValue = 3;
-//        int[] outputArray = new int[]{};
-//
-//
-//        spyAllianceDataCode.calculateMatrices(inputMatrix);
-//
-//        doReturn(path).when(spyAllianceDataCode).validateFormat();
-//        doReturn(computedValue).when(spyAllianceDataCode).computedValue();
-//        doReturn(outputArray).when(spyAllianceDataCode).resultingArray();
-//
-//        verify(spyAllianceDataCode).calculateMatrices(inputMatrix);
     }
 
     @Test
@@ -163,9 +129,10 @@ public class AllianceDataCodeTest {
                 {},
                 {}};
 
-        assertEquals(
-                "Invalid Input",
-                spyAllianceDataCode.validateInput(inputMatrix));
+        boolean isValid = false;
+
+        ComputedPath path = allianceDataCode.calculateMatrices(inputMatrix);
+        assertEquals(path.isValid(), isValid);
     }
 
     @Test
@@ -175,18 +142,15 @@ public class AllianceDataCodeTest {
                 {51, 23, 20, 19, 12},
                 {60, 12, 20, 11, 10}};
 
-        boolean path = false;
+        boolean isValid = false;
         int computedValue = 0;
-        int[] outputArray = new int[]{};
+        int[] outputArray = null;
 
+        ComputedPath path = allianceDataCode.calculateMatrices(inputMatrix);
 
-        spyAllianceDataCode.calculateMatrices(inputMatrix);
-
-        doReturn(path).when(spyAllianceDataCode).validateFormat();
-        doReturn(computedValue).when(spyAllianceDataCode).computedValue();
-        doReturn(outputArray).when(spyAllianceDataCode).resultingArray();
-
-        verify(spyAllianceDataCode).calculateMatrices(inputMatrix);
+        assertEquals(path.getPathSum(), computedValue);
+        assertEquals(path.isValid(), isValid);
+        assertArrayEquals(outputArray, path.getNewPath());
     }
 
     @Test
@@ -196,18 +160,15 @@ public class AllianceDataCodeTest {
                 {6, 3, 7, 9},
                 {5, 6, 8, 3}};
 
-        boolean path = true;
+        boolean isValid = true;
         int computedValue = 14;
         int[] outputArray = new int[]{3, 2, 1, 3};
 
+        ComputedPath path = allianceDataCode.calculateMatrices(inputMatrix);
 
-        spyAllianceDataCode.calculateMatrices(inputMatrix);
-
-        doReturn(path).when(spyAllianceDataCode).validateFormat();
-        doReturn(computedValue).when(spyAllianceDataCode).computedValue();
-        doReturn(outputArray).when(spyAllianceDataCode).resultingArray();
-
-        verify(spyAllianceDataCode).calculateMatrices(inputMatrix);
+        assertEquals(path.getPathSum(), computedValue);
+        assertEquals(path.isValid(), isValid);
+        assertArrayEquals(outputArray, path.getNewPath());
     }
 
     @Test
@@ -218,18 +179,15 @@ public class AllianceDataCodeTest {
                 {3, -2, 6, 10},
                 {6, -1, -2, 10}};
 
-        boolean path = true;
+        boolean isValid = true;
         int computedValue = 0;
         int[] outputArray = new int[]{2, 3, 4, 1};
 
+        ComputedPath path = allianceDataCode.calculateMatrices(inputMatrix);
 
-        spyAllianceDataCode.calculateMatrices(inputMatrix);
-
-        doReturn(path).when(spyAllianceDataCode).validateFormat();
-        doReturn(computedValue).when(spyAllianceDataCode).computedValue();
-        doReturn(outputArray).when(spyAllianceDataCode).resultingArray();
-
-        verify(spyAllianceDataCode).calculateMatrices(inputMatrix);
+        assertEquals(path.getPathSum(), computedValue);
+        assertEquals(path.isValid(), isValid);
+        assertArrayEquals(outputArray, path.getNewPath());
     }
 
     @Test
@@ -240,18 +198,15 @@ public class AllianceDataCodeTest {
                 {51, 51},
                 {5, 5}};
 
-        boolean path = true;
+        boolean isValid = true;
         int computedValue = 10;
-        int[] outputArray = new int[]{4,4};
+        int[] outputArray = new int[]{4, 4};
 
+        ComputedPath path = allianceDataCode.calculateMatrices(inputMatrix);
 
-        spyAllianceDataCode.calculateMatrices(inputMatrix);
-
-        doReturn(path).when(spyAllianceDataCode).validateFormat();
-        doReturn(computedValue).when(spyAllianceDataCode).computedValue();
-        doReturn(outputArray).when(spyAllianceDataCode).resultingArray();
-
-        verify(spyAllianceDataCode).calculateMatrices(inputMatrix);
+        assertEquals(path.getPathSum(), computedValue);
+        assertEquals(path.isValid(), isValid);
+        assertArrayEquals(outputArray, path.getNewPath());
     }
 
     @Test
@@ -262,18 +217,15 @@ public class AllianceDataCodeTest {
                 {51, 51, 51},
                 {5, 5, 51}};
 
-        boolean path = false;
+        boolean isValid = false;
         int computedValue = 10;
-        int[] outputArray = new int[]{4,4};
+        int[] outputArray = new int[]{4, 4, 0};
 
+        ComputedPath path = allianceDataCode.calculateMatrices(inputMatrix);
 
-        spyAllianceDataCode.calculateMatrices(inputMatrix);
-
-        doReturn(path).when(spyAllianceDataCode).validateFormat();
-        doReturn(computedValue).when(spyAllianceDataCode).computedValue();
-        doReturn(outputArray).when(spyAllianceDataCode).resultingArray();
-
-        verify(spyAllianceDataCode).calculateMatrices(inputMatrix);
+        assertEquals(path.getPathSum(), computedValue);
+        assertEquals(path.isValid(), isValid);
+        assertArrayEquals(outputArray, path.getNewPath());
     }
 
     @Test
@@ -284,19 +236,16 @@ public class AllianceDataCodeTest {
                 {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
                         2, 2, 2, 2, 2, 2, 2, 2, 2}};
 
-        boolean path = true;
+        boolean isValid = true;
         int computedValue = 20;
         int[] outputArray = new int[]{
                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
 
+        ComputedPath path = allianceDataCode.calculateMatrices(inputMatrix);
 
-        spyAllianceDataCode.calculateMatrices(inputMatrix);
-
-        doReturn(path).when(spyAllianceDataCode).validateFormat();
-        doReturn(computedValue).when(spyAllianceDataCode).computedValue();
-        doReturn(outputArray).when(spyAllianceDataCode).resultingArray();
-
-        verify(spyAllianceDataCode).calculateMatrices(inputMatrix);
+        assertEquals(path.getPathSum(), computedValue);
+        assertEquals(path.isValid(), isValid);
+        assertArrayEquals(outputArray, path.getNewPath());
     }
 }
